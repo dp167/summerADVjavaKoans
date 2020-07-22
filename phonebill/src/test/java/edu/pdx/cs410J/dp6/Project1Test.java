@@ -1,5 +1,6 @@
 package edu.pdx.cs410J.dp6;
 
+
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -32,7 +33,8 @@ public class Project1Test extends InvokeMainTestCase{
       assertThat(readme, not(nullValue()));
       BufferedReader reader = new BufferedReader(new InputStreamReader(readme));
       String line = reader.readLine();
-      assertThat(line, containsString("This is a README file!"));
+      assertThat(line, containsString("This program is a phonebill application which takes 5 arguments"));
+
     }
   }
 
@@ -46,14 +48,15 @@ public class Project1Test extends InvokeMainTestCase{
     return invokeMain(Project1.class, args);
   }
 
+
   /**
    * tests the regular command line input `
    */
   @Test
   public void testRegularCommandLineArguments(){
-    MainMethodResult result = invokeMain("david", "503-709-4866", "503-880-6960", "10/15/2015", "09:38", "10/15/2015", "09:42","-print");
+    MainMethodResult result = invokeMain("-print","david", "422-345-6579", "410-333-3456", "10/16/2019", "09:38", "10/16/2019", "09:42");
     assertThat(result.getExitCode(), equalTo(0));
-    assertThat(result.getTextWrittenToStandardOut(), containsString("Phone call from 503-709-4866 to 503-880-6960 from 10/15/2015 09:38 to 10/15/2015 09:42"));
+    assertThat(result.getTextWrittenToStandardOut(), containsString("Phone call from 422-345-6579 to 410-333-3456 from 10/16/2019 09:38 to 10/16/2019 09:42"));
   }
 
 

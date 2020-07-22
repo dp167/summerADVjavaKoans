@@ -47,15 +47,15 @@ public class Project1 {
                 Readme();
 
 
-            customer = args[0];
-            callerNumber = args[1];
-            calleeNumber = args[2];
+            customer = args[1];
+            callerNumber = args[2];
+            calleeNumber = args[3];
 
-            start = args[3] + " ";
-            start += args[4];
+            start = args[4] + " ";
+            start += args[5];
 
-            end = args[5] + " ";
-            end += args[6];
+            end = args[6] + " ";
+            end += args[7];
 
             if (customer == null)
                 errorout("Missing customer field!");
@@ -69,9 +69,9 @@ public class Project1 {
                 errorout("Date and time cannot contain quotes");
             else if (!callerNumber.matches("\\d{3}-\\d{3}-\\d{4}$") || !calleeNumber.matches("\\d{3}-\\d{3}-\\d{4}$"))
                 errorout("Phone numbers must contain 10 digits with dashes");
-            else if (!args[3].matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)") || !args[5].matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)"))
+            else if (!args[4].matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)") || !args[6].matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)"))
                 errorout("Date format must follow mm/dd/yyyy");
-            else if (!args[4].matches("([01]?[0-9]|2[0-3]):[0-5][0-9]") || !args[6].matches("([01]?[0-9]|2[0-3]):[0-5][0-9]"))
+            else if (!args[5].matches("([01]?[0-9]|2[0-3]):[0-5][0-9]") || !args[7].matches("([01]?[0-9]|2[0-3]):[0-5][0-9]"))
                 errorout("Time format must be mm:hh (24 hour time)");
         }
 
@@ -87,7 +87,7 @@ public class Project1 {
 
             Billrecord = new PhoneBill(customer, new PhoneCall(callerNumber, calleeNumber, start, end));
 
-           int loopvar= 7;
+           int loopvar= 0;
             while(loopvar<args.length)
             {
                 if(loopvar > 8)

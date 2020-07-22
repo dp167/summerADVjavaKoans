@@ -38,7 +38,7 @@ public class PhoneBillTest {
     public void TestgetPhoneCalls() {
         Billrecord = new PhoneBill(customer, new PhoneCall(callerNumber, calleeNumber, start, end));
 
-        assertThat(Billrecord.getPhoneCalls(), equalTo(Billrecord.phoneCalls));
+        assertThat(Billrecord.getPhoneCalls(), equalTo(Billrecord.call));
     }
 
 }

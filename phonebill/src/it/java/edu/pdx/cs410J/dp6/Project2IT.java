@@ -7,36 +7,30 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Tests the functionality in the {@link Project1} main class.
- */
-public class Project1IT extends InvokeMainTestCase {
+public class Project2IT extends InvokeMainTestCase {
 
-    /**
-     * Invokes the main method of {@link Project1} with the given arguments.
-     */
-    private MainMethodResult invokeMain(String... args) {
-        return invokeMain( Project1.class, args );
+
+    private InvokeMainTestCase.MainMethodResult invokeMain(String... args) {
+        return invokeMain( Project2.class, args );
     }
 
-  /**
-   * Tests that invoking the main method with no arguments issues an error
-   */
-  @Test
-  public void testNoCommandLineArguments() {
+    /**
+     * Tests that invoking the main method with no arguments issues an error
+     */
+    @Test
+    public void testNoCommandLineArguments() {
 
-    MainMethodResult result = invokeMain();
-    assertThat(result.getExitCode(), equalTo(3));
-    assertThat(result.getTextWrittenToStandardOut(), containsString("No command line arguments"));
-  }
-
+        InvokeMainTestCase.MainMethodResult result = invokeMain();
+        assertThat(result.getExitCode(), equalTo(3));
+        assertThat(result.getTextWrittenToStandardOut(), containsString("No command line arguments"));
+    }
     /**
      * Tests that invoking the main method with no arguments issues an error
      */
     @Test
     public void testMissingCommandLineArguments() {
 
-        MainMethodResult result = invokeMain("-print","Marley", "410-222-3333","420-230-3344","05/02/2020","05/02/2020","12:33");
+        InvokeMainTestCase.MainMethodResult result = invokeMain("-print","Marley", "410-222-3333","420-230-3344","05/02/2020","05/02/2020","12:33");
         assertThat(result.getExitCode(), equalTo(3));
         assertThat(result.getTextWrittenToStandardOut(), containsString("Missing command line arguments"));
     }
@@ -46,9 +40,10 @@ public class Project1IT extends InvokeMainTestCase {
      */
     @Test
     public void testReadmeCommand() {
-        MainMethodResult result = invokeMain(Project1.class, "-README");
+        InvokeMainTestCase.MainMethodResult result = invokeMain(Project2.class, "-README");
+
         System.out.println(result.getTextWrittenToStandardOut());
-        assertThat(result.getExitCode(), equalTo(3));
+        assertThat(result.getExitCode(), equalTo(2));
     }
 
     /**
@@ -56,7 +51,7 @@ public class Project1IT extends InvokeMainTestCase {
      */
     @Test
     public void wrongdateformat() {
-        MainMethodResult result = invokeMain(Project1.class,"-print","Marley", "410-222-3333","420-230-3344","5022020","12:10","05/02/2020","12:33");
+        InvokeMainTestCase.MainMethodResult result = invokeMain(Project2.class,"-print","Marley", "410-222-3333","420-230-3344","5022020","12:10","05/02/2020","12:33");
         assertThat(result.getTextWrittenToStandardOut(), containsString("Date format must follow mm/dd/yyyy"));
     }
 
@@ -65,9 +60,12 @@ public class Project1IT extends InvokeMainTestCase {
      */
     @Test
     public void wrongtimeformat() {
-        MainMethodResult result = invokeMain(Project1.class,"-print,","Marley", "410-222-3333","420-230-3344","05/02/2020","123","05/02/2020","12:33");
+        InvokeMainTestCase.MainMethodResult result = invokeMain(Project2.class,"-print","Marley", "410-222-3333","420-230-3344","05/02/2020","123","05/02/2020","12:33");
         assertThat(result.getTextWrittenToStandardOut(), containsString("Time format must be mm:hh (24 hour time)"));
     }
+
+
+
 
 
 

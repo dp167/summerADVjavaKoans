@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class PhoneBill extends AbstractPhoneBill {
 
     String customer;
-    List<AbstractPhoneCall> phoneCalls;
+    public Collection<PhoneCall> call = new ArrayList<>();
+    //List<AbstractPhoneCall> phoneCalls;
 
     /**
      *
@@ -23,11 +24,20 @@ public class PhoneBill extends AbstractPhoneBill {
     PhoneBill(String customer,PhoneCall phonecall)
     {
         this.customer = customer;
-        phoneCalls = new ArrayList<AbstractPhoneCall>();
         addPhoneCall(phonecall);
 
 
     }
+    PhoneBill(String customer)
+    {
+        this.customer = customer;
+    }
+
+    PhoneBill()
+    {
+        customer = "" ;
+    }
+
 
     /**
      *
@@ -37,6 +47,9 @@ public class PhoneBill extends AbstractPhoneBill {
     public String getCustomer() {
         return customer;
     }
+    public void setCustomer(String customer){
+        this.customer = customer;
+    }
 
     /**
      *
@@ -44,7 +57,7 @@ public class PhoneBill extends AbstractPhoneBill {
      */
     @Override
     public void addPhoneCall(AbstractPhoneCall abstractPhoneCall) {
-        phoneCalls.add(abstractPhoneCall);
+        call.add((PhoneCall) abstractPhoneCall);
 
     }
 
@@ -54,6 +67,6 @@ public class PhoneBill extends AbstractPhoneBill {
      */
     @Override
     public Collection getPhoneCalls() {
-        return phoneCalls;
+        return call;
     }
 }
